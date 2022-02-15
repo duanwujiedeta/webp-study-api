@@ -1,3 +1,3 @@
-const answer = require("./target-file");
+const answer = require("./data.json");
 console.log("answer");
 console.log(answer);

@@ -36,14 +36,26 @@ const config = {
 
             // Add your rules for custom modules here
             // Learn more about loaders from https://webpack.js.org/loaders/
+
             {
-                test: /target-file.js$/,
-                use: [
-                {
-                    loader: `val-loader`,
-                },
+                test: /\.(json)$/i,
+                rules: [
+                  {
+                    loader: "val-loader",
+                    options: {
+                      executableFile: path.resolve(
+                        __dirname,
+                        "fixtures",
+                        "executableFile.js"
+                      ),
+                    },
+                  },
                 ],
-            },
+              },
+              {
+                test: /\.json$/i,
+                type: "asset/resource",
+              },
 
         ],
     },
