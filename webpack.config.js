@@ -8,7 +8,10 @@ const isProduction = process.env.NODE_ENV == 'production';
 
 
 const config = {
-    entry: './src/index.js',
+    entry: {
+        index:'./src/index.js',
+        vloder:'./src/entry.js'
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
     },
@@ -33,6 +36,15 @@ const config = {
 
             // Add your rules for custom modules here
             // Learn more about loaders from https://webpack.js.org/loaders/
+            {
+                test: /target-file.js$/,
+                use: [
+                {
+                    loader: `val-loader`,
+                },
+                ],
+            },
+
         ],
     },
 };
@@ -42,7 +54,7 @@ module.exports = () => {
         config.mode = 'production';
         
         
-        config.plugins.push(new WorkboxWebpackPlugin.GenerateSW());
+        // config.plugins.push(new WorkboxWebpackPlugin.GenerateSW());
         
     } else {
         config.mode = 'development';
