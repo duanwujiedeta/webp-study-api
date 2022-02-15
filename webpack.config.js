@@ -9,7 +9,6 @@ const isProduction = process.env.NODE_ENV == 'production';
 
 const config = {
     entry: {
-        index:'./src/index.js',
         vloder:'./src/entry.js'
     },
     output: {
@@ -29,34 +28,17 @@ const config = {
     ],
     module: {
         rules: [
-            {
-                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-                type: 'asset',
-            },
-
-            // Add your rules for custom modules here
-            // Learn more about loaders from https://webpack.js.org/loaders/
-
-            {
-                test: /\.(json)$/i,
-                rules: [
-                  {
-                    loader: "val-loader",
-                    options: {
-                      executableFile: path.resolve(
-                        __dirname,
-                        "fixtures",
-                        "executableFile.js"
-                      ),
-                    },
-                  },
-                ],
-              },
+          {
+            test: require.resolve("./src/years-in-ms.js"),
+            use: [
               {
-                test: /\.json$/i,
-                type: "asset/resource",
+                loader: "val-loader",
+                options: {
+                  years: 10,
+                },
               },
-
+            ],
+          },
         ],
     },
 };
