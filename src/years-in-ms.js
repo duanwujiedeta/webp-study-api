@@ -4,6 +4,6 @@ module.exports = function yearsInMs({ years }) {// { years } 是val-loader的选
     // NOTE: this return value will replace the module in the bundle
     return {
       cacheable: true,
-      code: "module.exports = " + value,
+      code: "module.exports = " + value,//code 字段是必须的
     };
   };
