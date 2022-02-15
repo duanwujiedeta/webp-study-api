@@ -1,5 +1,3 @@
-import modenizr from "./modernizr.js";
+import { default as figlet } from "./figlet.js";
 
-
-console.log("modenizr");
-console.log(modenizr);
+console.log(figlet);

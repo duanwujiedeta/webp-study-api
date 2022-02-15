@@ -29,21 +29,15 @@ const config = {
     module: {
         rules: [
             {
-              test: path.resolve(__dirname, "src", "modernizr.js"),
-              use: [
-                {
-                  loader: "val-loader",
-                  options: {
-                    minify: false,
-                    options: ["setClasses"],
-                    "feature-detects": [
-                      "test/css/flexbox",
-                      "test/es6/promises",
-                      "test/serviceworker",
-                    ],
+                test: path.resolve(__dirname, "src", "figlet.js"),
+                use: [
+                  {
+                    loader: "val-loader",
+                    options: {
+                      text: "FIGLET",
+                    },
                   },
-                },
-              ],
+                ],
             },
         ],
     },
