@@ -28,17 +28,23 @@ const config = {
     ],
     module: {
         rules: [
-          {
-            test: require.resolve("./src/years-in-ms.js"),
-            use: [
-              {
-                loader: "val-loader",
-                options: {
-                  years: 10,
+            {
+              test: path.resolve(__dirname, "src", "modernizr.js"),
+              use: [
+                {
+                  loader: "val-loader",
+                  options: {
+                    minify: false,
+                    options: ["setClasses"],
+                    "feature-detects": [
+                      "test/css/flexbox",
+                      "test/es6/promises",
+                      "test/serviceworker",
+                    ],
+                  },
                 },
-              },
-            ],
-          },
+              ],
+            },
         ],
     },
 };

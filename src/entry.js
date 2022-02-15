@@ -1,4 +1,5 @@
-import tenYearsMs from "./years-in-ms";
+import modenizr from "./modernizr.js";
 
-console.log("answer");
-console.log(tenYearsMs); // 315360000000
+
+console.log("modenizr");
+console.log(modenizr);
