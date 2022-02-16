@@ -11,6 +11,9 @@
     "serve": "webpack serve"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.4",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
     "extract-loader": "^5.1.0",
     "figlet": "^1.5.2",
     "html-webpack-plugin": "^5.5.0",

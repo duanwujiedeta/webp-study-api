@@ -9,7 +9,7 @@ const isProduction = process.env.NODE_ENV == 'production';
 
 const config = {
     entry: {
-        vloder:'./src/entry.js'
+        vloder:'./src/index.js'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -20,9 +20,9 @@ const config = {
         host: 'localhost',
     },
     plugins: [
-        /* new HtmlWebpackPlugin({
+        new HtmlWebpackPlugin({
             template: 'index.html',
-        }), */
+        }),
 
         // Add your plugins here
         // Learn more about plugins from https://webpack.js.org/configuration/plugins/
@@ -30,16 +30,14 @@ const config = {
     module: {
         rules: [
             {
-              test: /\.png$/,
-              use: [{ loader: 'file-loader'}]
-            },
-            {
-              test: /\.html$/,
-              use: [
-                { loader: 'file-loader' },
-                { loader: 'extract-loader' },
-                { loader: 'ref-loader' },
-              ]
+              test: /\.m?js$/,
+              exclude: /(node_modules|bower_components)/,
+              use: {
+                loader: 'babel-loader',
+                options: {
+                  presets: ['@babel/preset-env']
+                }
+              }
             }
         ],
     },
