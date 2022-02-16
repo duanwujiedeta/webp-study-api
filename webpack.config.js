@@ -28,20 +28,19 @@ const config = {
         // Learn more about plugins from https://webpack.js.org/configuration/plugins/
     ],
     module: {
-        rules: [
+        rules: [  
+            // the 'transform-runtime' plugin tells Babel to
+            // require the runtime instead of inlining it.
             {
-                test: /\.m?js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                  loader: 'babel-loader',
-                  options: {
-                    cacheDirectory: true,
-                    cacheIdentifier: "abcdfg",
-                    cacheCompression: false,
-                    presets: ['@babel/preset-env'],
-                    plugins: ['@babel/plugin-proposal-object-rest-spread']
-                  }
+            test: /\.m?js$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                presets: ['@babel/preset-env'],
+                plugins: ['@babel/plugin-transform-runtime']
                 }
+            }
             }
         ],
     },
