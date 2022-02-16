@@ -36,6 +36,8 @@ const config = {
                   loader: 'babel-loader',
                   options: {
                     cacheDirectory: true,
+                    cacheIdentifier: "abcdfg",
+                    cacheCompression: false,
                     presets: ['@babel/preset-env'],
                     plugins: ['@babel/plugin-proposal-object-rest-spread']
                   }
