@@ -13,15 +13,16 @@ const config = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
+        clean:true
     },
     devServer: {
         open: true,
         host: 'localhost',
     },
     plugins: [
-        new HtmlWebpackPlugin({
+        /* new HtmlWebpackPlugin({
             template: 'index.html',
-        }),
+        }), */
 
         // Add your plugins here
         // Learn more about plugins from https://webpack.js.org/configuration/plugins/
@@ -29,16 +30,17 @@ const config = {
     module: {
         rules: [
             {
-                test: path.resolve(__dirname, "src", "figlet.js"),
-                use: [
-                  {
-                    loader: "val-loader",
-                    options: {
-                      text: "FIGLET",
-                    },
-                  },
-                ],
+              test: /\.png$/,
+              use: [{ loader: 'file-loader'}]
             },
+            {
+              test: /\.html$/,
+              use: [
+                { loader: 'file-loader' },
+                { loader: 'extract-loader' },
+                { loader: 'ref-loader' },
+              ]
+            }
         ],
     },
 };

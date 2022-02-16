@@ -1,3 +1,2 @@
-import { default as figlet } from "./figlet.js";
-
-console.log(figlet);
+// index.js
+import './avatar_page.html'
