@@ -1,4 +1,2 @@
-let abc = "def,abc";
-let pro = new Promise();
-console.log("Hello World!");
-console.log(abc);
+import html from "./file.html";
+console.log(html);
