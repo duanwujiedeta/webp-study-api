@@ -22,10 +22,11 @@ const config = {
         host: 'localhost',
     },
     plugins: [
-        new CompressionPlugin(),
-        new webpack.BannerPlugin({
+        new webpack.ContextReplacementPlugin(/locale$/, /a|b|c|d|/),
+        // new CompressionPlugin(),
+        /* new webpack.BannerPlugin({
             banner: 'hello world:'+'fullhash:[fullhash], chunkhash:[chunkhash], name:[name], filebase:[filebase], query:[query], file:[file]',
-        }),
+        }), */
         new HtmlWebpackPlugin({
             template: 'index.html',
         }),
