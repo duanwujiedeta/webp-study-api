@@ -22,7 +22,7 @@ const config = {
         host: 'localhost',
     },
     plugins: [
-        new webpack.ContextReplacementPlugin(/locale$/, /a|b|d/),
+        // new webpack.ContextReplacementPlugin(/locale$/, /a|b|d/),
         // new CompressionPlugin(),
         /* new webpack.BannerPlugin({
             banner: 'hello world:'+'fullhash:[fullhash], chunkhash:[chunkhash], name:[name], filebase:[filebase], query:[query], file:[file]',
