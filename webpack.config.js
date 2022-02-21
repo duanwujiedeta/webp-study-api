@@ -4,6 +4,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const webpack = require('webpack');
+const CompressionPlugin = require("compression-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV == 'production';
 
@@ -21,6 +22,7 @@ const config = {
         host: 'localhost',
     },
     plugins: [
+        new CompressionPlugin(),
         new webpack.BannerPlugin({
             banner: 'hello world:'+'fullhash:[fullhash], chunkhash:[chunkhash], name:[name], filebase:[filebase], query:[query], file:[file]',
         }),
