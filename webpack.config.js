@@ -6,6 +6,8 @@ const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const webpack = require('webpack');
 const CompressionPlugin = require("compression-webpack-plugin");
 
+const CopyPlugin = require("copy-webpack-plugin");
+
 const isProduction = process.env.NODE_ENV == 'production';
 
 
@@ -22,6 +24,12 @@ const config = {
         host: 'localhost',
     },
     plugins: [
+        new CopyPlugin({
+            patterns: [
+              { from: "source", to: "dest" },
+              { from: "other", to: "public" },
+            ],
+        }),
         // new webpack.ContextReplacementPlugin(/locale$/, /a|b|d/),
         // new CompressionPlugin(),
         /* new webpack.BannerPlugin({
