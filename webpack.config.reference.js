@@ -26,5 +26,7 @@ module.exports = {
 			manifest: require("./manifest/beta-manifest.json"), // eslint-disable-line
 			extensions: [".js", ".jsx"]
 		})
-	]
+	]/**
+    看到的另外一种 DllReferencePlugin使用方法，把 dll的输出出来之后，然后生成一个library,输出的 index.html 文件则需要把 dll 对应的文件名给引入进去
+    */
 };
