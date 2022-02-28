@@ -1,74 +1,30 @@
-// Generated using webpack-cli https://github.com/webpack/webpack-cli
-
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const webpack = require('webpack');
-const CompressionPlugin = require("compression-webpack-plugin");
-
-const CopyPlugin = require("copy-webpack-plugin");
-
-const isProduction = process.env.NODE_ENV == 'production';
-
-
-const config = {
+var path = require("path");
+module.exports = {
+    // mode: "development || "production",
+    resolve: {
+        extensions: [".js", ".jsx"]
+    },
     entry: {
-        vloder:'./src/index.js'
+        alpha: ["./dll/alpha", "./dll/a"],
+        beta: ["./dll/beta", "./dll/b", "./dll/c"]
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        clean:true
-    },
-    devServer: {
-        open: true,
-        host: 'localhost',
+        path: path.join(__dirname, "dist"),
+        filename: "MyDll.[name].js",
+        library: "[name]_[fullhash]",
+        clean: true
     },
     plugins: [
-        new webpack.DefinePlugin({
-            PRODUCTION: JSON.stringify(true),
-            VERSION: JSON.stringify('5fa3b9'),
-            BROWSER_SUPPORTS_HTML5: true,
-            TWO: '1+1',
-            'typeof window': JSON.stringify('object'),
-            'process.env.NODE_ENV': true,
-        }),
-        new CopyPlugin({
-            patterns: [
-              { from: "source", to: "dest" },
-              { from: "other", to: "public" },
-            ],
-        }),
-        // new webpack.ContextReplacementPlugin(/locale$/, /a|b|d/),
-        // new CompressionPlugin(),
-        /* new webpack.BannerPlugin({
-            banner: 'hello world:'+'fullhash:[fullhash], chunkhash:[chunkhash], name:[name], filebase:[filebase], query:[query], file:[file]',
-        }), */
-        new HtmlWebpackPlugin({
-            template: 'index.html',
-        }),
-
-        // Add your plugins here
-        // Learn more about plugins from https://webpack.js.org/configuration/plugins/
-    ],
-    module: {
-        rules: [
-            {
-              test: /\.html$/i,
-              loader: "html-loader",
-            },
-        ],
-    },
+        new webpack.DllPlugin({
+            path: path.join(__dirname, "manifest", "[name]-manifest.json"),//manifest 文件的输出路径，必须是句对路径
+            name: "[name]_[fullhash]"//dll 模块的输出名，简称 vendor_lib
+        })
+    ]
 };
 
-module.exports = () => {
-    if (isProduction) {
-        config.mode = 'production';
-        
-        
-        // config.plugins.push(new WorkboxWebpackPlugin.GenerateSW());
-        
-    } else {
-        config.mode = 'development';
-    }
-    return config;
-};
+/** 
+  dllplugin，是把不常改变的库打包生成，然后通过 manifest.json 文件来进行记录，以便后续的 DllReferencePlugin 插件再继续使用，进而免去了很多的打包分析
+  很适用于那种基本不怎么改的模块
+  所以需要建立两个打包配置的构建
+ */
