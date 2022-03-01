@@ -16,10 +16,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: 'index.html',
         }),
-        new webpack.EnvironmentPlugin({
+        // new webpack.EnvironmentPlugin(['NODE_ENV', 'DEBUG']) 使用数组的时候，需要在命令行中添加 process.env.xxx 作为命令行参数传入
+        /* new webpack.EnvironmentPlugin({
             NODE_ENV1: 'development111',
             DEBUG: 'DEBUG111',
-        })
+        }) */
         /**
          上面的效果相当于
          new webpack.DefinePlugin({
