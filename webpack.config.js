@@ -3,6 +3,7 @@ var path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 process.env.NODE_ENV1 = "111111111111111";
 process.env.DEBUG = "222222222222";
+const ESLintPlugin = require('eslint-webpack-plugin');
 module.exports = {
     mode: "development",
     entry: {
@@ -15,10 +16,13 @@ module.exports = {
         clean: true
     },
     plugins: [
+        new ESLintPlugin({
+            extensions: ['js']
+        }),
         new HtmlWebpackPlugin({
             template: 'index.html',
         }),
-        new webpack.EnvironmentPlugin(['NODE_ENV1', 'DEBUG']) 
+        new webpack.EnvironmentPlugin(['NODE_ENV1', 'DEBUG'])
         /* new webpack.EnvironmentPlugin({
             NODE_ENV1: 'development111',
             DEBUG: 'DEBUG111',
