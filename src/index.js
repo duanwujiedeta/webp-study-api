@@ -1,7 +1,5 @@
-import html from "./file.html";
+console.log('process.env.NODE_ENV');
+console.log(process.env.NODE_ENV1);
 
-function test(name) {
-    return require('./locale/' + name + '.json');
-}
-console.log(test("a"));
-console.log(html);
+console.log('process.env.DEBUG');
+console.log(process.env.DEBUG);
