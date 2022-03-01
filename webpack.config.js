@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 var path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+process.env.NODE_ENV1 = "111111111111111";
+process.env.DEBUG = "222222222222";
 module.exports = {
     mode: "development",
     entry: {
@@ -16,7 +18,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: 'index.html',
         }),
-        // new webpack.EnvironmentPlugin(['NODE_ENV', 'DEBUG']) 使用数组的时候，需要在命令行中添加 process.env.xxx 作为命令行参数传入
+        new webpack.EnvironmentPlugin(['NODE_ENV1', 'DEBUG']) 
         /* new webpack.EnvironmentPlugin({
             NODE_ENV1: 'development111',
             DEBUG: 'DEBUG111',
