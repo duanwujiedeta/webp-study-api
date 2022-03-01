@@ -1,7 +1,36 @@
 const webpack = require('webpack');
 var path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-module.exports = {
+module.exports = [
+	{
+        mode: "development" || "production",
+		entry: "./moduleIds/example.js",
+		output: {
+			pathinfo: true,
+			filename: "output.js",
+            clean: true
+		},
+		optimization: {
+			moduleIds: "size",
+			usedExports: true,
+			mangleExports: true
+		}
+	},
+	{
+        mode: "development" || "production",
+		entry: "./moduleIds/example.js",
+		output: {
+			pathinfo: true,
+			filename: "without.js",
+            clean: true
+		},
+		optimization: {
+			moduleIds: "size",
+			usedExports: false,
+			mangleExports: false
+		}
+	}
+]; /* {
     mode: "development" || "production",
     entry: {
         main: "./runtimeChunk/example"
@@ -20,4 +49,4 @@ module.exports = {
     optimization: {
         runtimeChunk: true
     }
-};
+}; */
