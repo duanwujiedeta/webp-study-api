@@ -1,52 +1,41 @@
 const webpack = require('webpack');
 var path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-module.exports = [
-	{
-        mode: "development" || "production",
-		entry: "./moduleIds/example.js",
-		output: {
-			pathinfo: true,
-			filename: "output.js",
-            clean: true
-		},
-		optimization: {
-			moduleIds: "size",
-			usedExports: true,
-			mangleExports: true
-		}
-	},
-	{
-        mode: "development" || "production",
-		entry: "./moduleIds/example.js",
-		output: {
-			pathinfo: true,
-			filename: "without.js",
-            clean: true
-		},
-		optimization: {
-			moduleIds: "size",
-			usedExports: false,
-			mangleExports: false
-		}
-	}
-]; /* {
+module.exports = {
     mode: "development" || "production",
     entry: {
-        main: "./runtimeChunk/example"
+        pageA: "./splitChunks/pageA",
+        pageB: "./splitChunks/pageB",
+        pageC: "./splitChunks/pageC"
     },
-    output: {
-        path: path.join(__dirname, "dist"),
-        filename: "[name].chunkhash.js",
-        chunkFilename: "[name].chunkhash.js",
-        clean: true
+    optimization: {
+        chunkIds: "named",
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    chunks: "initial",
+                    minChunks: 2,
+                    maxInitialRequests: 5, // The default limit is too small to showcase the effect
+                    minSize: 0 // This is example is too small to create commons chunks
+                },
+                vendor: {
+                    test: /node_modules/,
+                    chunks: "initial",
+                    name: "vendor",
+                    priority: 10,
+                    enforce: true
+                }
+            }
+        }
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: 'index.html',
         })
     ],
-    optimization: {
-        runtimeChunk: true
+    output: {
+        path: path.join(__dirname, "dist"),
+        filename: "[name].js",
+        clean: true
     }
-}; */
+};
