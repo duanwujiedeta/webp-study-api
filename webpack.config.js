@@ -4,28 +4,21 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     mode: "development" || "production",
     entry: {
-        pageA: "./splitChunks/pageA",
-        pageB: "./splitChunks/pageB",
-        pageC: "./splitChunks/pageC"
+        pageA: "./many-pages/pages/a",
+        pageB: "./many-pages/pages/b",
+        pageC: "./many-pages/pages/c",
+        pageD: "./many-pages/pages/d",
+        pageE: "./many-pages/pages/e",
+        pageF: "./many-pages/pages/f",
+        pageG: "./many-pages/pages/g"
     },
     optimization: {
-        chunkIds: "named",
         splitChunks: {
-            cacheGroups: {
-                commons: {
-                    chunks: "initial",
-                    minChunks: 2,
-                    maxInitialRequests: 5, // The default limit is too small to showcase the effect
-                    minSize: 0 // This is example is too small to create commons chunks
-                },
-                vendor: {
-                    test: /node_modules/,
-                    chunks: "initial",
-                    name: "vendor",
-                    priority: 10,
-                    enforce: true
-                }
-            }
+            chunks: "all",
+            maxInitialRequests: 20, // for HTTP2
+            maxAsyncRequests: 20, // for HTTP2
+            minSize: 40, // for example only: chosen to match 2 modules
+            // omit minSize in real use case to use the default of 30kb
         }
     },
     plugins: [
