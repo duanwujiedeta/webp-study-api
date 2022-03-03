@@ -19,6 +19,13 @@ module.exports = {
             maxAsyncRequests: 20, // for HTTP2
             minSize: 40, // for example only: chosen to match 2 modules
             // omit minSize in real use case to use the default of 30kb
+            cacheGroups: {
+                commons: {
+                    test: /[\\/].*[\\/]/,//把所有的公共组同意弄到 vendors.js 中
+                    name: 'vendors',
+                    chunks: 'all',
+                }
+            }
         }
     },
     plugins: [
