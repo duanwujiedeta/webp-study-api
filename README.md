@@ -13,3 +13,5 @@ yarn build
 ```
 
 to bundle your application
+
+# val-loader 将代码作为模块执行，并将其导出为 JS 代码，看示例代码的控制台输出
