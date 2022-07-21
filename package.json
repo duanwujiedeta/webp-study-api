@@ -4,7 +4,7 @@
   "name": "my-webpack-project",
   "scripts": {
     "build": "webpack --mode=production --node-env=production",
-    "build:dev": "webpack --mode=development",
+    "build:dev": "node --inspect-brk=127.0.0.1:9222 ./node_modules/webpack/bin/webpack.js --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
     "serve": "webpack serve"
@@ -16,5 +16,8 @@
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.3",
     "workbox-webpack-plugin": "^6.4.2"
+  },
+  "dependencies": {
+    "css-loader": "^6.7.1"
   }
 }
