@@ -20,32 +20,24 @@ const config = {
         new HtmlWebpackPlugin({
             template: 'index.html',
         }),
-
-        // Add your plugins here
-        // Learn more about plugins from https://webpack.js.org/configuration/plugins/
     ],
     module: {
-        rules: [
-            {
-                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-                type: 'asset',
-            },
-
-            // Add your rules for custom modules here
-            // Learn more about loaders from https://webpack.js.org/loaders/
-        ],
+        rules: [{
+            test: /\.(css|sss)$/i,
+            use: [{
+                    loader: require.resolve("./testLoader"),
+                    options: {},
+                },
+                {
+                    loader: "postcss-loader",
+                    options: {},
+                },
+            ],
+        }, ],
     },
 };
 
 module.exports = () => {
-    if (isProduction) {
-        config.mode = 'production';
-        
-        
-        config.plugins.push(new WorkboxWebpackPlugin.GenerateSW());
-        
-    } else {
-        config.mode = 'development';
-    }
+    config.mode = 'development';
     return config;
 };
